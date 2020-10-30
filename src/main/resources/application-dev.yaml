@@ -1,0 +1,13 @@
+spring: 
+  profiles: dev
+  datasource:
+    db1:
+      jdbc-url: jdbc:postgresql://localhost:5432/bitzy-uri-data-1
+      username: bitzy
+      password: bitzy
+      driverClassName: org.postgresql.Driver 
+    db2:
+      jdbc-url: jdbc:postgresql://localhost:5432/bitzy-uri-data-2
+      username: bitzy
+      password: bitzy
+      driverClassName: org.postgresql.Driver 
