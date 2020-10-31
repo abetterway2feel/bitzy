@@ -2,19 +2,19 @@ bitzy:
   url: http://localhost:8080
 server:
     port: 8080
-spring:
-  profiles: 
-    active: dev
+spring: 
+  profiles:
+    active: docker-compose
   datasource:
     db1:
-      jdbc-url: jdbc:postgresql://localhost:5432/bitzy-uri-data-1
+      jdbc-url: jdbc:postgresql://db1:5433/bitzy-uri-data-1
       user: bitzy
       password: bitzy
       driverClassName: org.postgresql.Driver 
     db2:
-      jdbc-url: jdbc:postgresql://localhost:5432/bitzy-uri-data-2
+      jdbc-url: jdbc:postgresql://db2:5434/bitzy-uri-data-2
       user: bitzy
       password: bitzy
       driverClassName: org.postgresql.Driver 
-  flyway: 
-    enabled: false
+flyway: 
+  enabled: false

@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UrishortenerApplication {
+public class BitzyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UrishortenerApplication.class, args);
+		SpringApplication.run(BitzyApplication.class, args);
 	}
 
 }

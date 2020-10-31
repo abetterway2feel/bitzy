@@ -1,5 +1,7 @@
 package com.bitzy.urishortener.config;
 
+import java.net.InetAddress;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -10,17 +12,33 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 @Configuration
-public class DataSourceConfig {
+public class BitzyConfig {
 
     @Autowired
     Environment env;
 
-    @Bean(name = "numberOfPartitions")
-    public int numberOfPartitions() {
-        return 100;
+    @Bean(name = "host")
+    public String host() {
+        return InetAddress.getLoopbackAddress().getHostName();
     }
 
-    public DataSource extractFromEnvAndApplyMigrations(String configPrefix){
+    @Bean(name = "datasources")
+    public DataSource[] dataSources() {
+        DataSource[] datasources = { db1(), db2() };
+        return datasources;
+    }
+
+    @Bean
+    public DataSource db1() {
+       return extractFromEnvAndApplyMigrations("spring.datasource.db1");
+    }
+
+    @Bean
+    public DataSource db2() {
+        return extractFromEnvAndApplyMigrations("spring.datasource.db2");
+    }
+
+    private DataSource extractFromEnvAndApplyMigrations(String configPrefix){
         BasicDataSource ds = new BasicDataSource();
         ds.setUrl(env.getProperty(configPrefix+".jdbc-url"));
         ds.setUsername(env.getProperty(configPrefix+".user"));
@@ -32,22 +50,6 @@ public class DataSourceConfig {
 
         Flyway.configure().dataSource(ds).load().migrate();
         return ds;
-    }
-
-    @Bean()
-    public DataSource db1() {
-       return extractFromEnvAndApplyMigrations("spring.datasource.db1");
-    }
-
-    @Bean()
-    public DataSource db2() {
-        return extractFromEnvAndApplyMigrations("spring.datasource.db2");
-    }
-
-    @Bean(name = "datasources")
-    public DataSource[] dataSources() {
-        DataSource[] datasources = { db1(), db2() };
-        return datasources;
     }
 
 }

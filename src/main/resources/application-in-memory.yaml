@@ -1,14 +1,18 @@
+bitzy:
+  url: http://localhost:8081
+server:
+    port: 8081
 spring: 
   profiles:
-    active: test
+    active: in-memory
   datasource:
     db1:
       jdbc-url: jdbc:h2:mem:testdb
-      username: sa
+      user: sa
       password: password
       driverClassName: org.h2.Driver
     db2:
       jdbc-url: jdbc:h2:mem:testdb
-      username: sa
+      user: sa
       password: password
       driverClassName: org.h2.Driver

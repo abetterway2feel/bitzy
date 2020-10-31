@@ -8,10 +8,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bitzy</groupId>
-	<artifactId>urishortener</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>urishortener</name>
-	<description>Shorten urli</description>
+	<artifactId>bitzy</artifactId>
+	<version>0.1.0</version>
+	<name>bitzy</name>
+	<description>Shorten a URI</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -43,7 +43,7 @@
 			<artifactId>h2</artifactId>
 			<version>1.4.200</version>
 			<scope>test</scope>
-	</dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
@@ -72,38 +72,45 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<profiles>
-							<profile>dev</profile>
+						<profile>dev</profile>
 					</profiles>
-			</configuration>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
 	<profiles>
 		<profile>
-				<id>dev</id>
-				<activation>
-						<activeByDefault>true</activeByDefault>
-				</activation>
-				<properties>
-						<build.profile.id>dev</build.profile.id>
-						<profileActive>dev</profileActive>
-				</properties>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<build.profile.id>dev</build.profile.id>
+				<profileActive>dev</profileActive>
+			</properties>
 		</profile>
 		<profile>
-				<id>test</id>
-				<properties>
-						<build.profile.id>test</build.profile.id>
-						<profileActive>test</profileActive>
-				</properties>
+			<id>docker-compose</id>
+			<properties>
+				<build.profile.id>docker-compose</build.profile.id>
+				<profileActive>docker-compose</profileActive>
+			</properties>
 		</profile>
 		<profile>
-				<id>prod</id>
-				<properties>
-						<build.profile.id>prod</build.profile.id>
-						<profileActive>prod</profileActive>
-				</properties>
+			<id>in-memory</id>
+			<properties>
+				<build.profile.id>in-memory</build.profile.id>
+				<profileActive>in-memory</profileActive>
+			</properties>
 		</profile>
-</profiles>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<build.profile.id>prod</build.profile.id>
+				<profileActive>prod</profileActive>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

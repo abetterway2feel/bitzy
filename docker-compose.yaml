@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  app:
+    container_name: bitzy
+    image: bitzy
+    build: 
+      context: .
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker-compose"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db1
+      - db2
+  db1:
+    image: postgres
+    expose:
+    - "5433" 
+    ports:
+      - "5433:5433"
+    environment:
+      - POSTGRES_USER=bitzy
+      - POSTGRES_PASSWORD=bitzy
+      - POSTGRES_DB=bitzy-uri-data-1
+    command: "-p 5433"
+  db2:
+    image: postgres
+    expose:
+    - "5434" 
+    ports:
+      - "5434:5434"
+    environment:
+      - POSTGRES_USER=bitzy
+      - POSTGRES_PASSWORD=bitzy
+      - POSTGRES_DB=bitzy-uri-data-2
+    command: "-p 5434"
